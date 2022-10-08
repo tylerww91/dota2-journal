@@ -1,48 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <!-- metadata -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-<head>
-    <!-- metadata -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- title and favicon -->
+        <title>Supabase Web App</title>
+        <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
 
-    <!-- title and favicon -->
-    <title>Supabase Web App</title>
-    <link rel="icon" type="image/x-icon" href="/assets/alchemy-favicon.png" />
+        <!-- js -->
+        <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <script type="module" src="app.js"></script>
 
-    <!-- js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-    <script type="module" src="app.js"></script>
+        <!-- fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap"
+        />
 
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+        <!-- css -->
+        <link rel="stylesheet" href="/styles/reset.css" />
+        <link rel="stylesheet" href="/styles/global.css" />
+        <!-- add link for page specific css -->
+    </head>
 
+    <body>
+        <header class="page-header">
+            <img class="logo" src="/assets/html_css_js.png" alt="logo" />
+            <p class="title">Supabase Web App</p>
+            <nav>
+                <a href="/">Home</a>
+                <a id="sign-out-link" href="auth">Sign Out</a>
+            </nav>
+        </header>
 
-    <!-- css -->
-    <link rel="stylesheet" href="/styles/reset.css" />
-    <link rel="stylesheet" href="/styles/global.css" />
-    <!-- add link for page specific css -->
+        <main>
+            <section id="inputs-container">
+                <form id="hero-form">
+                    <label>
+                        <div>Your Hero</div>
+                        <select
+                            name="user-hero"
+                            required
+                            placeholder="choose your hero"
+                            id="user-hero-select"
+                        >
+                            <option value="abaddon">Abaddon</option>
+                            <option value="alchemist">Alchemist</option>
+                            <option value="ancient apparition">Ancient Apparition</option>
+                            <option value="anti-mage">Anti-Mage</option>
+                            <option value="arc warden">Arc Warden</option>
+                            <option value="axe">Axe</option>
+                            <option value="bane">Bane</option>
+                            <option value="batrider">Batrider</option>
+                            <option value="beastmaster">Beastmaster</option>
+                            <option value="bloodseeker">Bloodseeker</option>
+                            <option value="bounty hunter">Bounty Hunter</option>
+                            <option value="brewmaster">Brewmaster</option>
+                            <option value="bristleback">Bristleback</option>
+                            <option value="broodmother">Broodmother</option>
+                            <option value="centaur warrunner">Centaur Warrunner</option>
+                            <option value="chaos knight">Chaos Knight</option>
+                            <option value="chen">Chen</option>
+                            <option value="clinkz">Clinkz</option>
+                            <option value="clockwerk">Clockwerk</option>
+                            <option value="crystal maiden">Crystal Maiden</option>
+                            <option value="dark seer">Dark seer</option>
+                            <option value="dark willow">Dark Willow</option>
+                            <option value="dawnbreaker">Dawnbreaker</option>
+                            <option value="dazzle">Dazzle</option>
+                            <option value="death prophet">Death Prophet</option>
+                            <option value="disruptor">Disruptor</option>
+                            <option value="doom">Doom</option>
+                            <option value="dragon knight">Dragon Knight</option>
+                            <option value="drow ranger">Drow Ranger</option>
+                            <option value="earth spirit">Earth Spirit</option>
+                            <option value="earthshaker">Earthshaker</option>
+                            <option value="elder titan">Elder Titan</option>
+                            <option value="ember spirit">Ember Spirit</option>
+                            <option value="enchantress">Enchantress</option>
+                            <option value="enigma">Enigma</option>
+                            <option value="faceless void">Faceless Void</option>
+                            <option value="grimstroke">Grimstroke</option>
+                            <option value="gyrocopter">Gyrocopter</option>
+                            <option value="hoodwink">Hoodwink</option>
+                            <option value="huskar">Huskar</option>
+                            <option value="invoker">Invoker</option>
+                            <option value="io">Io</option>
+                            <option value="jakiro">Jakiro</option>
+                            <option value="juggernaut">Juggernaut</option>
+                            <option value="keeper of the light">Keeper Of The Light</option>
+                            <option value="kunkka">Kunkka</option>
+                            <option value="legion commander">Legion Commander</option>
+                            <option value="leshrac">Leshrac</option>
+                            <option value="lich">Lich</option>
+                            <option value="lifestealer">Lifestealer</option>
+                            <option value="lina">Lina</option>
+                            <option value="lion">Lion</option>
+                            <option value="lone druid">Lone Druid</option>
+                            <option value="luna">Luna</option>
+                            <option value="lycan">Lycan</option>
+                            <option value="magnus">Magnus</option>
+                            <option value="marci">Marci</option>
+                            <option value="mars">Mars</option>
+                            <option value="medusa">Medusa</option>
+                            <option value="meepo">Meepo</option>
+                            <option value="mirana">Mirana</option>
+                            <option value="monkey king">Monkey King</option>
+                            <option value="morphling">Morphling</option>
+                            <option value="naga siren">Naga Siren</option>
+                            <option value="nature's prophet">Nature's Prophet</option>
+                            <option value="necrophos">Necrophos</option>
+                            <option value="night stalker">Night Stalker</option>
+                            <option value="nyx assassin">Nyx Assassin</option>
+                            <option value="ogre magi">Ogre Magi</option>
+                            <option value="omniknight">Omniknight</option>
+                            <option value="oracle">Oracle</option>
+                            <option value="outworld destroyer">Outworld Destroyer</option>
+                            <option value="pangolier">Pangolier</option>
+                            <option value="phantom assassin">Phantom Assassin</option>
+                            <option value="phantom lancer">Phantom Lancer</option>
+                            <option value="phoenix">Phoenix</option>
+                            <option value="primal beast">Primal Beast</option>
+                            <option value="puck">Puck</option>
+                            <option value="pudge">Pudge</option>
+                            <option value="pugna">Pugna</option>
+                            <option value="queen of pain">Queen Of Pain</option>
+                            <option value="razor">Razor</option>
+                            <option value="riki">Riki</option>
+                            <option value="rubick">Rubick</option>
+                            <option value="sand king">Sand King</option>
+                            <option value="shadow demon">Shadow Demon</option>
+                            <option value="shadow fiend">Shadow Fiend</option>
+                            <option value="shadow shaman">Shadow Shaman</option>
+                            <option value="silencer">Silencer</option>
+                            <option value="skywrath mage">Skywrath Mage</option>
+                            <option value="slardar">Slardar</option>
+                            <option value="slark">Slark</option>
+                            <option value="snapfire">Snapfire</option>
+                            <option value="sniper">Sniper</option>
+                            <option value="spectre">Spectre</option>
+                            <option value="spirit breaker">Spirit Breaker</option>
+                            <option value="storm spirit">Storm Spirit</option>
+                            <option value="sven">Sven</option>
+                            <option value="techies">Techies</option>
+                            <option value="templar assassin">Templar Assassin</option>
+                            <option value="terrorblade">Terrorblade</option>
+                            <option value="tidehunter">Tidehunter</option>
+                            <option value="timbersaw">Timbersaw</option>
+                            <option value="tinker">Tinker</option>
+                            <option value="tiny">Tiny</option>
+                            <option value="treant protector">Treant Protector</option>
+                            <option value="troll warlord">Troll Warlord</option>
+                            <option value="tusk">Tusk</option>
+                            <option value="underlord">Underlord</option>
+                            <option value="undying">Undying</option>
+                            <option value="ursa">Ursa</option>
+                            <option value="vengeful spirit">Vengeful Spirit</option>
+                            <option value="venomancer">Venomancer</option>
+                            <option value="viper">Viper</option>
+                            <option value="visage">Visage</option>
+                            <option value="void spirit">Void Spirit</option>
+                            <option value="warlock">Warlock</option>
+                            <option value="weaver">Weaver</option>
+                            <option value="windranger">Windranger</option>
+                            <option value="winter wyvern">Winter Wyvern</option>
+                            <option value="witch doctor">Witch Doctor</option>
+                            <option value="wraith king">Wraith King</option>
+                            <option value="zues">Zues</option>
+                        </select>
+                    </label>
 
-</head>
-
-<body>
-    <header class="page-header">
-        <img class="logo" src="/assets/html_css_js.png" alt="logo">
-        <p class="title">Supabase Web App</p>
-        <nav>
-            <a href="/">Home</a>
-            <a id="sign-out-link" href="auth">Sign Out</a>
-        </nav>
-    </header>
-
-    <main>
-
-    </main>
-
-</body>
-
+                    <label>
+                        <div>Your Opponent</div>
+                        <select
+                            name="opponent-hero"
+                            required
+                            placeholder="choose your opponent"
+                            id="opponent-hero-select"
+                        >
+                            <option value="abaddon">Abaddon</option>
+                            <option value="alchemist">Alchemist</option>
+                            <option value="ancient apparition">Ancient Apparition</option>
+                            <option value="anti-mage">Anti-Mage</option>
+                            <option value="arc warden">Arc Warden</option>
+                            <option value="axe">Axe</option>
+                            <option value="bane">Bane</option>
+                            <option value="batrider">Batrider</option>
+                            <option value="beastmaster">Beastmaster</option>
+                            <option value="bloodseeker">Bloodseeker</option>
+                            <option value="bounty hunter">Bounty Hunter</option>
+                            <option value="brewmaster">Brewmaster</option>
+                            <option value="bristleback">Bristleback</option>
+                            <option value="broodmother">Broodmother</option>
+                            <option value="centaur warrunner">Centaur Warrunner</option>
+                            <option value="chaos knight">Chaos Knight</option>
+                            <option value="chen">Chen</option>
+                            <option value="clinkz">Clinkz</option>
+                            <option value="clockwerk">Clockwerk</option>
+                            <option value="crystal maiden">Crystal Maiden</option>
+                            <option value="dark seer">Dark seer</option>
+                            <option value="dark willow">Dark Willow</option>
+                            <option value="dawnbreaker">Dawnbreaker</option>
+                            <option value="dazzle">Dazzle</option>
+                            <option value="death prophet">Death Prophet</option>
+                            <option value="disruptor">Disruptor</option>
+                            <option value="doom">Doom</option>
+                            <option value="dragon knight">Dragon Knight</option>
+                            <option value="drow ranger">Drow Ranger</option>
+                            <option value="earth spirit">Earth Spirit</option>
+                            <option value="earthshaker">Earthshaker</option>
+                            <option value="elder titan">Elder Titan</option>
+                            <option value="ember spirit">Ember Spirit</option>
+                            <option value="enchantress">Enchantress</option>
+                            <option value="enigma">Enigma</option>
+                            <option value="faceless void">Faceless Void</option>
+                            <option value="grimstroke">Grimstroke</option>
+                            <option value="gyrocopter">Gyrocopter</option>
+                            <option value="hoodwink">Hoodwink</option>
+                            <option value="huskar">Huskar</option>
+                            <option value="invoker">Invoker</option>
+                            <option value="io">Io</option>
+                            <option value="jakiro">Jakiro</option>
+                            <option value="juggernaut">Juggernaut</option>
+                            <option value="keeper of the light">Keeper Of The Light</option>
+                            <option value="kunkka">Kunkka</option>
+                            <option value="legion commander">Legion Commander</option>
+                            <option value="leshrac">Leshrac</option>
+                            <option value="lich">Lich</option>
+                            <option value="lifestealer">Lifestealer</option>
+                            <option value="lina">Lina</option>
+                            <option value="lion">Lion</option>
+                            <option value="lone druid">Lone Druid</option>
+                            <option value="luna">Luna</option>
+                            <option value="lycan">Lycan</option>
+                            <option value="magnus">Magnus</option>
+                            <option value="marci">Marci</option>
+                            <option value="mars">Mars</option>
+                            <option value="medusa">Medusa</option>
+                            <option value="meepo">Meepo</option>
+                            <option value="mirana">Mirana</option>
+                            <option value="monkey king">Monkey King</option>
+                            <option value="morphling">Morphling</option>
+                            <option value="naga siren">Naga Siren</option>
+                            <option value="nature's prophet">Nature's Prophet</option>
+                            <option value="necrophos">Necrophos</option>
+                            <option value="night stalker">Night Stalker</option>
+                            <option value="nyx assassin">Nyx Assassin</option>
+                            <option value="ogre magi">Ogre Magi</option>
+                            <option value="omniknight">Omniknight</option>
+                            <option value="oracle">Oracle</option>
+                            <option value="outworld destroyer">Outworld Destroyer</option>
+                            <option value="pangolier">Pangolier</option>
+                            <option value="phantom assassin">Phantom Assassin</option>
+                            <option value="phantom lancer">Phantom Lancer</option>
+                            <option value="phoenix">Phoenix</option>
+                            <option value="primal beast">Primal Beast</option>
+                            <option value="puck">Puck</option>
+                            <option value="pudge">Pudge</option>
+                            <option value="pugna">Pugna</option>
+                            <option value="queen of pain">Queen Of Pain</option>
+                            <option value="razor">Razor</option>
+                            <option value="riki">Riki</option>
+                            <option value="rubick">Rubick</option>
+                            <option value="sand king">Sand King</option>
+                            <option value="shadow demon">Shadow Demon</option>
+                            <option value="shadow fiend">Shadow Fiend</option>
+                            <option value="shadow shaman">Shadow Shaman</option>
+                            <option value="silencer">Silencer</option>
+                            <option value="skywrath mage">Skywrath Mage</option>
+                            <option value="slardar">Slardar</option>
+                            <option value="slark">Slark</option>
+                            <option value="snapfire">Snapfire</option>
+                            <option value="sniper">Sniper</option>
+                            <option value="spectre">Spectre</option>
+                            <option value="spirit breaker">Spirit Breaker</option>
+                            <option value="storm spirit">Storm Spirit</option>
+                            <option value="sven">Sven</option>
+                            <option value="techies">Techies</option>
+                            <option value="templar assassin">Templar Assassin</option>
+                            <option value="terrorblade">Terrorblade</option>
+                            <option value="tidehunter">Tidehunter</option>
+                            <option value="timbersaw">Timbersaw</option>
+                            <option value="tinker">Tinker</option>
+                            <option value="tiny">Tiny</option>
+                            <option value="treant protector">Treant Protector</option>
+                            <option value="troll warlord">Troll Warlord</option>
+                            <option value="tusk">Tusk</option>
+                            <option value="underlord">Underlord</option>
+                            <option value="undying">Undying</option>
+                            <option value="ursa">Ursa</option>
+                            <option value="vengeful spirit">Vengeful Spirit</option>
+                            <option value="venomancer">Venomancer</option>
+                            <option value="viper">Viper</option>
+                            <option value="visage">Visage</option>
+                            <option value="void spirit">Void Spirit</option>
+                            <option value="warlock">Warlock</option>
+                            <option value="weaver">Weaver</option>
+                            <option value="windranger">Windranger</option>
+                            <option value="winter wyvern">Winter Wyvern</option>
+                            <option value="witch doctor">Witch Doctor</option>
+                            <option value="wraith king">Wraith King</option>
+                            <option value="zues">Zues</option>
+                        </select>
+                    </label>
+                </form>
+            </section>
+            <section id="output-container">
+                <ul id="response-list"></ul>
+            </section>
+            <section id="hero-portrait-container">
+                <ul id="hero-list"></ul>
+            </section>
+        </main>
+    </body>
 </html>
