@@ -1,0 +1,58 @@
+main {
+    display: grid;
+    grid-template-rows: 80px 230px 1fr;
+    gap: 30px;
+
+    background: url(/assets/app-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#inputs-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: blue;
+    margin: 0 auto;
+    justify-items: center;
+    align-items: center;
+    width: 350px;
+    height: 80px;
+    position: relative;
+}
+
+#hero-form {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+}
+
+#output-container {
+    background: paleturquoise;
+    width: 700px;
+    height: 200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#hero-portrait-container {
+    /* background: rgb(212, 105, 105); */
+}
+
+#submit-button {
+    height: 18px;
+    margin-top: 19px;
+    margin-left: 10px;
+}
+
+#hero-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-auto-rows: 100px;
+    position: relative;
+    margin: 0 auto;
+}
+
+li img {
+    height: 50px;
+    width: 50px;
+}
